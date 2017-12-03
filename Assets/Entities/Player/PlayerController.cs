@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject projectile;
 	public float projectileSpeed = 10;
 	public float firingRate = 0.2f;
+	public float health = 200f;
 
 	float xmin;
 	float xmax;
@@ -43,5 +44,20 @@ public class PlayerController : MonoBehaviour {
 		// restrict the player to the gamespace
 		float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
 		transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		Projectile missile = collider.gameObject.GetComponent<Projectile>();
+		if (missile) {
+			health -= missile.GetDamage();
+			missile.Hit();
+			if (health <= 0) {
+				Die();
+			}
+		}
+	}
+
+	void Die() {
+		Destroy(gameObject);
 	}
 }
