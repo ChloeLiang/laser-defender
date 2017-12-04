@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class FormationController : MonoBehaviour {
 	public GameObject enemyPrefab;
 	public float width = 10f;
 	public float height = 5f;
@@ -24,10 +24,7 @@ public class EnemySpawner : MonoBehaviour {
 		xmin = leftBoundary.x;
 		xmax = rightBoundary.x;
 
-		foreach (Transform child in transform) {
-			GameObject enemy = Instantiate(enemyPrefab, child.position, Quaternion.identity) as GameObject;
-			enemy.transform.parent = child;
-		}
+		SpawnEnemies();
 	}
 	
 	// Update is called once per frame
@@ -41,10 +38,29 @@ public class EnemySpawner : MonoBehaviour {
 		float leftEdgeOfFormation = transform.position.x - 0.5f * width;
 		float rightEdgeOfFormation = transform.position.x + 0.5f * width;
 
-		if (leftEdgeOfFormation < xmin) {
-			movingRight = true;
-		} else if (rightEdgeOfFormation > xmax) {
-			movingRight = false;
+		if (leftEdgeOfFormation < xmin || rightEdgeOfFormation > xmax) {
+			movingRight = !movingRight;
 		}
+
+		if (AllMembersDead()) {
+			Debug.Log("Empty Formation");
+			SpawnEnemies();
+		}
+	}
+
+	void SpawnEnemies() {
+		foreach (Transform child in transform) {
+			GameObject enemy = Instantiate(enemyPrefab, child.position, Quaternion.identity) as GameObject;
+			enemy.transform.parent = child;
+		}
+	}
+
+	bool AllMembersDead() {
+		foreach (Transform childPositionGameObject in transform) {
+			if (childPositionGameObject.childCount > 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

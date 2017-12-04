@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Fire() {
-		GameObject beam = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+		Vector3 offset = new Vector3(0, 1, 0);
+		GameObject beam = Instantiate(projectile, transform.position + offset, Quaternion.identity) as GameObject;
 		beam.GetComponent<Rigidbody2D>().velocity = new Vector3(0, projectileSpeed, 0);
 	}
 	
