@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4169620838622148}
   - component: {fileID: 212854716691191604}
-  - component: {fileID: 114844038369459424}
   - component: {fileID: 60651878569282236}
   - component: {fileID: 50207032959480360}
+  - component: {fileID: 114844038369459424}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -122,6 +122,7 @@ MonoBehaviour:
   projectileSpeed: 10
   firingRate: 0.2
   health: 200
+  fireSound: {fileID: 8300000, guid: b41c44827d22242eba1435b5c60952ec, type: 3}
 --- !u!212 &212854716691191604
 SpriteRenderer:
   m_ObjectHideFlags: 1
