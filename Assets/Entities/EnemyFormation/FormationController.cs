@@ -8,7 +8,6 @@ public class FormationController : MonoBehaviour {
 	public float height = 5f;
 	public float speed = 5f;
 	public float spawnDelay = 0.5f;
-	public float padding = 1f;
 
 	private bool movingRight = true;
 	private float xmin;
@@ -23,8 +22,8 @@ public class FormationController : MonoBehaviour {
 		float distanceToCamera = transform.position.z - Camera.main.transform.position.z;
 		Vector3 leftBoundary = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distanceToCamera));
 		Vector3 rightBoundary = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
-		xmin = leftBoundary.x + padding;
-		xmax = rightBoundary.x - padding;
+		xmin = leftBoundary.x;
+		xmax = rightBoundary.x;
 
 		SpawnUntilFull();
 	}
@@ -40,8 +39,10 @@ public class FormationController : MonoBehaviour {
 		float leftEdgeOfFormation = transform.position.x - 0.5f * width;
 		float rightEdgeOfFormation = transform.position.x + 0.5f * width;
 
-		if (leftEdgeOfFormation < xmin || rightEdgeOfFormation > xmax) {
-			movingRight = !movingRight;
+		if (leftEdgeOfFormation < xmin) {
+			movingRight = true;
+		} else if (rightEdgeOfFormation > xmax) {
+			movingRight = false;
 		}
 
 		if (AllMembersDead()) {
