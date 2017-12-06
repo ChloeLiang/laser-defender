@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Die() {
+		LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+		levelManager.LoadLevel("Win Screen");
 		Destroy(gameObject);
 	}
 }

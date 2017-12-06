@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 354c246de28654302b952de846197866
-timeCreated: 1512482790
+guid: 40d584ee1a68f4703ae675eb89985844
+timeCreated: 1512561783
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Korean Calligraphy
+  fontName: Dimitri Swank
   fontNames:
-  - Korean Calligraphy
+  - Dimitri Swank
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
